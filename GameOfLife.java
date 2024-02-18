@@ -15,7 +15,7 @@ public class GameOfLife {
 		 //test2(fileName, 3, 4);
 		//// test3(fileName, 3);
 		 //play(fileName);
-		test3(fileName, 3);
+		test1(fileName);
 
 		
 	}
@@ -33,11 +33,11 @@ public class GameOfLife {
 		String isAlive = "";
 		if (board[i][j] == 1) isAlive += "alive";
 		else isAlive += "dead";	
-		System.out.println("Cell ["+i+"]["+j+"] is " + isAlive);
-		System.out.println("The cell has " + count(board, i, j) + " alive neighbors");
+		System.out.println("Cell ["+i+"]["+j+"] is " + isAlive); //print current status
+		System.out.println("The cell has " + count(board, i, j) + " alive neighbors"); //prints amount of neighbors
 		if (cellValue(board, i, j) == 1) isAlive = "alive";
 		else isAlive = "dead";
-		System.out.println("In the next generation the cell will be " + isAlive);
+		System.out.println("In the next generation the cell will be " + isAlive); //prints next gen's status
 			
 		
 		//// Write here code that tests that the count and cellValue functions
@@ -75,13 +75,13 @@ public class GameOfLife {
 		In in = new In(fileName); // Constructs an In object for reading the input file
 		int rows = Integer.parseInt(in.readLine());
 		int cols = Integer.parseInt(in.readLine());
-		int[][] board = new int[rows + 2][cols + 2];
-		for(int i = 1; i < rows;i++){
+		int[][] board = new int[rows + 2][cols + 2]; //creates an array with 2 extra rows and two extra colums (for the border)
+		for(int i = 1; i < rows ;i++){ // runs for all the rows expect the borders
 			String str = in.readLine();
-			if (str.length() != 0){
-			for(int j = 1; j < str.length();j++){
-				if (str.charAt(j) == 'x') {
-					board[i][j + 1] = 1;
+			if (str.length() != 0){ //if the line is empty then ignores it
+			for(int j = 1; j < str.length();j++){ //runs for all the chars in the string
+				if (str.charAt(j) == 'x') { 
+					board[i][j + 1] = 1; //because the string starts with 0 and the board starts with 1
 				}else{
 					board[i][j + 1] = 0;
 				}
@@ -95,10 +95,10 @@ public class GameOfLife {
 	// Uses the cellValue(board,i,j) function to compute the value of each 
 	// cell in the new board. Returns the new board.
 	public static int[][] evolve(int[][] board) {
-		int[][] newBoard = new int[board.length][board[0].length];
+		int[][] newBoard = new int[board.length][board[0].length]; //creates an array of the same length
 		for(int i = 1; i < newBoard.length - 2; i++){
 			for(int j = 1; j < newBoard[1].length - 2; j++){
-				newBoard[i][j] = cellValue(board, i, j);	
+				newBoard[i][j] = cellValue(board, i, j);	//replaces all of the array numbers with the cell values of the original array (without the borders)
 			}
 		}
 	
@@ -116,11 +116,11 @@ public class GameOfLife {
 	// Uses the count(board,i,j) function to count the number of alive neighbors.
 	public static int cellValue(int[][] board, int i, int j) {
 			int cellValue = 0;
-			if (board[i][j] == 0) {
+			if (board[i][j] == 0) { //actions for dead cells
 				if (count(board, i, j) == 3) {
 					cellValue = 1;
 				}
-			}else{
+			}else{ //actions for live cells
 				if (count(board, i, j) < 2) {
 					cellValue = 0;
 				}else if((count(board, i, j) == 2) ||(count(board, i, j) == 3)){
@@ -138,9 +138,9 @@ public class GameOfLife {
 	// Assumes that j is at least 1 and at most the number of columns in the board - 1. 
 	public static int count(int[][] board, int i, int j) {
 		int count = 0;
-		for(int k = i - 1; k < i + 2; k++){
-			for(int l = j - 1; l < j + 2; l++){
-				if ((k != i)||(l != j)) {
+		for(int k = i - 1; k < i + 2; k++){ //checks the 3 rows relevant to the cell
+			for(int l = j - 1; l < j + 2; l++){ //checks the 3 colums relevant to the cell
+				if ((k != i)||(l != j)) { //ignores the actual cell
 					if (board[k][l] == 1) {
 						count++;		
 					}		
@@ -154,7 +154,7 @@ public class GameOfLife {
     public static void print(int[][] arr) {
 		for (int i = 1; i < arr.length - 1; i++) {
 			for (int j = 1; j < arr[i].length - 1; j++) {
-			System.out.printf("%3s",arr[i][j]);
+			System.out.printf("%3s",arr[i][j]); //prins in the fancy way
 			}
 			System.out.println();
 		 }

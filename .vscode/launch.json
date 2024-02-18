@@ -9,7 +9,8 @@
             "name": "GameOfLife",
             "request": "launch",
             "mainClass": "GameOfLife",
-            "projectName": "hw05-reserves-ohadbamram_986c0ec5"
+            "projectName": "hw05-reserves-ohadbamram_986c0ec5",
+            "args": ["line.dat"]
         },
         {
             "type": "java",
@@ -23,6 +24,8 @@
             "request": "launch",
             "mainClass": "GameOfLife",
             "projectName": "hw05-reserves_55925ea"
+            
+
         },
         {
             "type": "java",
